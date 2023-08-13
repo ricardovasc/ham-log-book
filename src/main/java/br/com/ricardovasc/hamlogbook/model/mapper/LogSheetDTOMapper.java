@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import br.com.ricardovasc.hamlogbook.model.LogSheet;
 import br.com.ricardovasc.hamlogbook.model.dto.LogSheetDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface LogSheetDTOMapper {
 	
 	LogSheet toLogSheet(LogSheetDTO logSheetDTO);

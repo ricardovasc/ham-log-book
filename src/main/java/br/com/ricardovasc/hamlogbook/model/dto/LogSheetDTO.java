@@ -26,6 +26,7 @@ public class LogSheetDTO implements Serializable {
 
 	private String note;
 
+	@NotNull
 	@NotEmpty
 	private Set<CallsignDTO> callsigns;
 

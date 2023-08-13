@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import br.com.ricardovasc.hamlogbook.model.Callsign;
 import br.com.ricardovasc.hamlogbook.model.dto.CallsignDTO;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface CallsignDTOMapper {
 	
 	Callsign toCallsign(CallsignDTO callsignDTO);
