@@ -29,10 +29,9 @@ public class LogSheetController {
 
 	@PostMapping
 	public ResponseEntity<LogSheetDTO> insert(@RequestBody LogSheetDTO logSheetDTO) {
-		logSheetDTO = logSheetService.insert(logSheetDTO);
+		logSheetDTO = logSheetService.save(logSheetDTO);
 		final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(logSheetDTO.getId()).toUri();
 		return ResponseEntity.created(uri).body(logSheetDTO);
 	}
-
 }

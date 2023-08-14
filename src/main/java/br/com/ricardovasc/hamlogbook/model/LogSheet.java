@@ -2,18 +2,16 @@ package br.com.ricardovasc.hamlogbook.model;
 
 import java.time.LocalDateTime;
 import java.util.Set;
-import java.util.UUID;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.PrePersist;
 import lombok.Data;
 
 @Entity
@@ -24,9 +22,6 @@ public class LogSheet {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(nullable = false, unique = true, columnDefinition = "BINARY(16)")
-	private UUID uuid;
-	
 	@Column(nullable = false)
 	private LocalDateTime dateTime;
 	
@@ -36,16 +31,10 @@ public class LogSheet {
 	@Column(length = 200)
 	private String note;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
-			name = "sheet_callsign", 
-			joinColumns = @JoinColumn(name = "sheet_id"), 
+			name = "log_sheet_callsign", 
+			joinColumns = @JoinColumn(name = "log_sheet_id"), 
 			inverseJoinColumns = @JoinColumn(name = "callsign_id"))
-	private Set<Callsign> callsigns;
-	
-	@PrePersist
-	void onCreate() {
-		this.setUuid(UUID.randomUUID());
-	}
-	
+	private Set<Callsign> callsignList;
 }

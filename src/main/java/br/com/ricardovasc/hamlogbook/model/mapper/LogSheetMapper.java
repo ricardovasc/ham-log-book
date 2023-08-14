@@ -6,10 +6,9 @@ import br.com.ricardovasc.hamlogbook.model.LogSheet;
 import br.com.ricardovasc.hamlogbook.model.dto.LogSheetDTO;
 
 @Mapper(componentModel = "spring")
-public interface LogSheetDTOMapper {
+public interface LogSheetMapper {
 	
-	LogSheet toLogSheet(LogSheetDTO logSheetDTO);
+	LogSheet logSheetDTOToLogSheet(LogSheetDTO logSheetDTO);
 	
-	LogSheetDTO toLogSheetDTO(LogSheet logSheet);
-
+	LogSheetDTO logSheetToLogSheetDTO(LogSheet logSheet);
 }

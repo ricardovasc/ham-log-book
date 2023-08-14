@@ -1,20 +1,17 @@
 spring:
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:ham_log_book_db
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/ham_log_book_db
     username: hammer
-    password: hammer
-    
-  h2:
-    console:
-      enabled: true
-      path: /h2-console
-      
+    password: H4mm3R 
   jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
         format-sql: true
         show-sql: true
+        order-inserts: true
+        order-update: true
