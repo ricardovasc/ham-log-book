@@ -1,6 +1,9 @@
 package br.com.ricardovasc.hamlogbook.model;
 
+import java.util.HashSet;
 import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,10 +12,16 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Callsign {
 	
 	@Id
@@ -25,6 +34,7 @@ public class Callsign {
 	@Column(nullable = false, length = 100)
 	private String name;
 	
-	@ManyToMany(mappedBy = "callsignList", fetch = FetchType.EAGER)
-	private Set<LogSheet> logSheetList;
+	@JsonIgnore
+	@ManyToMany(mappedBy = "callsignList", fetch = FetchType.LAZY)
+	private Set<LogSheet> logSheetList = new HashSet<>();
 }

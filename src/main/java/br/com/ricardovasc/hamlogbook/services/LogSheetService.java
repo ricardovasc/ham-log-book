@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import br.com.ricardovasc.hamlogbook.exception.ResourceNotFoundException;
 import br.com.ricardovasc.hamlogbook.model.LogSheet;
 import br.com.ricardovasc.hamlogbook.model.dto.LogSheetDTO;
 import br.com.ricardovasc.hamlogbook.model.mapper.LogSheetMapper;
@@ -25,6 +26,13 @@ public class LogSheetService {
 				.stream()
 				.map(logSheetDTOMapper::logSheetToLogSheetDTO)
 				.collect(Collectors.toList());
+	}
+
+	@Transactional(readOnly = true)
+	public LogSheetDTO findById(Integer id) {
+		return logSheetRepository.findById(id)
+				.map(logSheetDTOMapper::logSheetToLogSheetDTO)
+				.orElseThrow(() -> new ResourceNotFoundException("Log Sheet not found with id: " + id));
 	}
 	
 	@Transactional

@@ -1,6 +1,7 @@
 package br.com.ricardovasc.hamlogbook.model;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -12,10 +13,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class LogSheet {
 
 	@Id
@@ -31,10 +38,10 @@ public class LogSheet {
 	@Column(length = 200)
 	private String note;
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(
 			name = "log_sheet_callsign", 
 			joinColumns = @JoinColumn(name = "log_sheet_id"), 
 			inverseJoinColumns = @JoinColumn(name = "callsign_id"))
-	private Set<Callsign> callsignList;
+	private Set<Callsign> callsignList = new HashSet<>();
 }
