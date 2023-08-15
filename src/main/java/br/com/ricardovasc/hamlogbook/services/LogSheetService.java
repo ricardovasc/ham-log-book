@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.ricardovasc.hamlogbook.exception.ResourceNotFoundException;
-import br.com.ricardovasc.hamlogbook.model.LogSheet;
-import br.com.ricardovasc.hamlogbook.model.dto.LogSheetDTO;
-import br.com.ricardovasc.hamlogbook.model.mapper.LogSheetMapper;
+import br.com.ricardovasc.hamlogbook.exceptions.ResourceNotFoundException;
+import br.com.ricardovasc.hamlogbook.models.LogSheet;
+import br.com.ricardovasc.hamlogbook.models.dtos.LogSheetDTO;
+import br.com.ricardovasc.hamlogbook.models.mappers.LogSheetMapper;
 import br.com.ricardovasc.hamlogbook.repositories.LogSheetRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -42,4 +42,8 @@ public class LogSheetService {
 		return logSheetDTOMapper.logSheetToLogSheetDTO(logSheet);
 	}
 	
+	@Transactional
+	public void delete(Long id) {
+
+	}
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.ricardovasc.hamlogbook.model.dto.LogSheetDTO;
+import br.com.ricardovasc.hamlogbook.models.dtos.LogSheetDTO;
 import br.com.ricardovasc.hamlogbook.services.LogSheetService;
 import lombok.RequiredArgsConstructor;
 

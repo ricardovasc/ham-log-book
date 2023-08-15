@@ -5,11 +5,13 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import br.com.ricardovasc.hamlogbook.model.Callsign;
+import br.com.ricardovasc.hamlogbook.models.Callsign;
 
 
 @Repository
 public interface CallsignRepository extends JpaRepository<Callsign, Integer> {
 
     Optional<Callsign> findByCode(String code);
+
+    void deleteByCode(String code);
 }

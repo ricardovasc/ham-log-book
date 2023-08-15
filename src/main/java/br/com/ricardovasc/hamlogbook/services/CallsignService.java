@@ -6,10 +6,10 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.ricardovasc.hamlogbook.exception.ResourceNotFoundException;
-import br.com.ricardovasc.hamlogbook.model.Callsign;
-import br.com.ricardovasc.hamlogbook.model.dto.CallsignDTO;
-import br.com.ricardovasc.hamlogbook.model.mapper.CallsignMapper;
+import br.com.ricardovasc.hamlogbook.exceptions.ResourceNotFoundException;
+import br.com.ricardovasc.hamlogbook.models.Callsign;
+import br.com.ricardovasc.hamlogbook.models.dtos.CallsignDTO;
+import br.com.ricardovasc.hamlogbook.models.mappers.CallsignMapper;
 import br.com.ricardovasc.hamlogbook.repositories.CallsignRepository;
 import lombok.RequiredArgsConstructor;
 
@@ -40,5 +40,10 @@ public class CallsignService {
         final Callsign callsign = callsignDTOMapper.callsignDTOToCallsign(callsignDTO);
         callsignRepository.save(callsign);
         return callsignDTOMapper.callsignToCallsignDTO(callsign);
+    }
+
+    @Transactional
+    public void delete(String code) {
+        callsignRepository.deleteByCode(code);
     }
 }

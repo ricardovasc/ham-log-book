@@ -1,9 +1,9 @@
-package br.com.ricardovasc.hamlogbook.model.mapper;
+package br.com.ricardovasc.hamlogbook.models.mappers;
 
 import org.mapstruct.Mapper;
 
-import br.com.ricardovasc.hamlogbook.model.LogSheet;
-import br.com.ricardovasc.hamlogbook.model.dto.LogSheetDTO;
+import br.com.ricardovasc.hamlogbook.models.LogSheet;
+import br.com.ricardovasc.hamlogbook.models.dtos.LogSheetDTO;
 
 @Mapper(componentModel = "spring")
 public interface LogSheetMapper {

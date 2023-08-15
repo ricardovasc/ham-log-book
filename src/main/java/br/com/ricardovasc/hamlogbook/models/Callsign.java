@@ -1,4 +1,4 @@
-package br.com.ricardovasc.hamlogbook.model;
+package br.com.ricardovasc.hamlogbook.models;
 
 import java.util.HashSet;
 import java.util.Set;

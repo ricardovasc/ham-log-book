@@ -1,9 +1,9 @@
-package br.com.ricardovasc.hamlogbook.model.mapper;
+package br.com.ricardovasc.hamlogbook.models.mappers;
 
 import org.mapstruct.Mapper;
 
-import br.com.ricardovasc.hamlogbook.model.Callsign;
-import br.com.ricardovasc.hamlogbook.model.dto.CallsignDTO;
+import br.com.ricardovasc.hamlogbook.models.Callsign;
+import br.com.ricardovasc.hamlogbook.models.dtos.CallsignDTO;
 
 @Mapper(componentModel = "spring")
 public interface CallsignMapper {

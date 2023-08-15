@@ -1,4 +1,4 @@
-package br.com.ricardovasc.hamlogbook.exception.dto;
+package br.com.ricardovasc.hamlogbook.exceptions.dto;
 
 import java.io.Serializable;
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package br.com.ricardovasc.hamlogbook.exception.handler;
+package br.com.ricardovasc.hamlogbook.exceptions.handler;
 
 import java.time.Instant;
 
@@ -6,8 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import br.com.ricardovasc.hamlogbook.exception.ResourceNotFoundException;
-import br.com.ricardovasc.hamlogbook.exception.dto.ErrorDTO;
+import br.com.ricardovasc.hamlogbook.exceptions.ResourceNotFoundException;
+import br.com.ricardovasc.hamlogbook.exceptions.dto.ErrorDTO;
 import jakarta.servlet.http.HttpServletRequest;
 
 @ControllerAdvice

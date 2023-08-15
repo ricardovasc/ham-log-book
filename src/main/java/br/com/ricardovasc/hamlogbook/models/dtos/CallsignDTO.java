@@ -1,4 +1,4 @@
-package br.com.ricardovasc.hamlogbook.model.dto;
+package br.com.ricardovasc.hamlogbook.models.dtos;
 
 import java.io.Serializable;
 

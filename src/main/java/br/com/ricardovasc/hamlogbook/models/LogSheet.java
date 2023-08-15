@@ -1,4 +1,4 @@
-package br.com.ricardovasc.hamlogbook.model;
+package br.com.ricardovasc.hamlogbook.models;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

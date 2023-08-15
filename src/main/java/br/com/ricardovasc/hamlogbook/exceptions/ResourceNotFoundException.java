@@ -1,4 +1,4 @@
-package br.com.ricardovasc.hamlogbook.exception;
+package br.com.ricardovasc.hamlogbook.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     
