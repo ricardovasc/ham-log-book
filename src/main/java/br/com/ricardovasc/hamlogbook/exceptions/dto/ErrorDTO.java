@@ -1,19 +1,22 @@
 package br.com.ricardovasc.hamlogbook.exceptions.dto;
 
 import java.io.Serializable;
-import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
-import lombok.Builder;
-import lombok.Data;
+import org.springframework.http.ProblemDetail;
 
-@Data
-@Builder
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@NoArgsConstructor
 public class ErrorDTO implements Serializable {
+    private static final long serialVersionUID = 1L;
 
-    private Instant timestamp;
-    private Integer status;
-    private String error;
-    private String message;
-    private String path;
+    private final List<ProblemDetail> problemDetailList = new ArrayList<>();
     
+    public void addError(ProblemDetail problemDetail) {
+        problemDetailList.add(problemDetail);
+    }
 }
