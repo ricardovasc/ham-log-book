@@ -43,7 +43,7 @@ public class LogSheetService {
 	}
 	
 	@Transactional
-	public void delete(Long id) {
-
+	public void delete(Integer id) {
+		logSheetRepository.deleteById(id);
 	}
 }

@@ -4,9 +4,12 @@ import java.net.URI;
 import java.util.List;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.lang.NonNull;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +17,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.ricardovasc.hamlogbook.models.dtos.CallsignDTO;
 import br.com.ricardovasc.hamlogbook.services.CallsignService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 
@@ -31,12 +35,12 @@ public class CallsignController {
 	}
 
     @GetMapping("/{code}")
-    public ResponseEntity<CallsignDTO> getOne(@PathVariable String code) {
+    public ResponseEntity<CallsignDTO> getOne(@PathVariable @NonNull String code) {
         return ResponseEntity.ok().body(callsignService.findByCode(code));
     }
 
     @PostMapping
-    public ResponseEntity<CallsignDTO> save(@RequestBody CallsignDTO callsignDTO) {
+    public ResponseEntity<CallsignDTO> save(@RequestBody @NonNull @Valid CallsignDTO callsignDTO) {
         final CallsignDTO insertedCallsign = callsignService.save(callsignDTO);
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}")
                 .buildAndExpand(insertedCallsign).toUri();
@@ -44,4 +48,17 @@ public class CallsignController {
         return ResponseEntity.created(uri).body(insertedCallsign);
     }
 
+    @PutMapping
+    public ResponseEntity<CallsignDTO> update(@RequestBody @NonNull @Valid CallsignDTO callsignDTO) {
+        final CallsignDTO updatedCallsign = callsignService.save(callsignDTO);
+
+        return ResponseEntity.ok().body(updatedCallsign);
+    }
+
+    @DeleteMapping("/{code}")
+    public ResponseEntity<Void> delete(@PathVariable @NonNull String code) {
+        callsignService.delete(code);
+
+        return ResponseEntity.noContent().build();
+    }
 }

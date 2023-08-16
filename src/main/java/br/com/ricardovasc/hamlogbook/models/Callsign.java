@@ -28,7 +28,7 @@ public class Callsign {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(unique = true, nullable = false, length = 6)
+	@Column(unique = true, nullable = false, updatable = false, length = 6)
 	private String code;
 	
 	@Column(nullable = false, length = 100)

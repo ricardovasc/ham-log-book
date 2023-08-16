@@ -8,4 +8,5 @@ import br.com.ricardovasc.hamlogbook.models.LogSheet;
 @Repository
 public interface LogSheetRepository extends JpaRepository<LogSheet, Integer> {
 
+    void deleteById(Integer id);
 }
