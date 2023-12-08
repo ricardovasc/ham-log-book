@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.ricardovasc.hamlogbook.models.dtos.CallsignDTO;
+import br.com.ricardovasc.hamlogbook.models.dtos.UpdateCallsignDTO;
 import br.com.ricardovasc.hamlogbook.services.CallsignService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -48,9 +49,10 @@ public class CallsignController {
         return ResponseEntity.created(uri).body(insertedCallsign);
     }
 
-    @PutMapping
-    public ResponseEntity<CallsignDTO> update(@RequestBody @NonNull @Valid CallsignDTO callsignDTO) {
-        final CallsignDTO updatedCallsign = callsignService.save(callsignDTO);
+    @PutMapping("/{code}")
+    public ResponseEntity<CallsignDTO> update(@PathVariable @NonNull String code,
+            @RequestBody @NonNull @Valid UpdateCallsignDTO updateCallsignDTO) {
+        final CallsignDTO updatedCallsign = callsignService.update(code, updateCallsignDTO);
 
         return ResponseEntity.ok().body(updatedCallsign);
     }
