@@ -44,7 +44,7 @@ public class CallsignController {
     public ResponseEntity<CallsignDTO> save(@RequestBody @NonNull @Valid CallsignDTO callsignDTO) {
         final CallsignDTO insertedCallsign = callsignService.save(callsignDTO);
         final URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{code}")
-                .buildAndExpand(insertedCallsign).toUri();
+                .buildAndExpand(insertedCallsign.getCode()).toUri();
 
         return ResponseEntity.created(uri).body(insertedCallsign);
     }
