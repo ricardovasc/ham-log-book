@@ -67,7 +67,6 @@ public class CallsignIntegrationTest {
         void shouldSaveAndReturnStatusCreated() {
             final String inputJson = """
                     {
-                        "id": 4,
                         "code": "PU7ABC",
                         "name": "Tester"
                     }

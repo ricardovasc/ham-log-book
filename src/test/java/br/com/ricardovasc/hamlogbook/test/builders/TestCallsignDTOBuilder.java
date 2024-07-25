@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import org.apache.commons.lang3.RandomUtils;
-
 import br.com.ricardovasc.hamlogbook.models.dtos.CallsignDTO;
 import br.com.ricardovasc.hamlogbook.test.utils.TestRandomUtils;
 
@@ -64,7 +62,7 @@ public class TestCallsignDTOBuilder {
 
         public List<CallsignDTO> buildList() {
             return Stream.generate(this::build)
-                    .limit(size > 0 ? size : RandomUtils.nextInt(1, 10))
+                    .limit(size > 0 ? size : TestRandomUtils.randomInteger(10))
                     .collect(Collectors.toList());
         }
     }

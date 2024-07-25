@@ -27,6 +27,10 @@ public class TestRandomUtils {
         return EASY_RANDOM.nextInt(1, 1000);
     }
 
+    public Integer randomInteger(int bound) {
+        return EASY_RANDOM.nextInt(1, bound);
+    }
+
     public <T> T randomObject(Class<T> classType) {
         return EASY_RANDOM.nextObject(classType);
     }
