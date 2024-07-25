@@ -12,9 +12,7 @@ import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.JsonPathResultMatchers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,6 +52,66 @@ public class CallsignIntegrationTest {
                     .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                     .andExpect(MockMvcResultMatchers.jsonPath("$[0].code").value("PU7AAA"))
                     .andExpect(MockMvcResultMatchers.jsonPath("$[0].name").value("Name for PU7AAA"));
+        }
+    }
+
+    @Nested
+    @FieldDefaults(level = AccessLevel.PRIVATE)
+    class SaveTest {
+        
+        @Autowired
+        MockMvc mockMvc;
+
+        @Test
+        @SneakyThrows
+        void shouldSaveAndReturnStatusCreated() {
+            final String inputJson = """
+                    {
+                        "id": 4,
+                        "code": "PU7ABC",
+                        "name": "Tester"
+                    }
+                    """;
+
+            final ResultActions resultActions = mockMvc.perform(
+                    MockMvcRequestBuilders.post(CALLSIGN_PATH)
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(inputJson));
+            
+            resultActions
+                    .andExpect(MockMvcResultMatchers.status().isCreated())
+                    .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("PU7ABC"))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Tester"));
+        }
+    }
+
+    @Nested
+    @FieldDefaults(level = AccessLevel.PRIVATE)
+    class UpdateTest {
+        
+        @Autowired
+        MockMvc mockMvc;
+
+        @Test
+        @SneakyThrows
+        void shouldUpdateAndReturnStatusOk() {
+            final String inputJson = """
+                    {
+                        "name": "Tester"
+                    }
+                    """;
+
+            final ResultActions resultActions = mockMvc.perform(
+                    MockMvcRequestBuilders.put(CALLSIGN_PATH + "/PU7AAA")
+                            .contentType(MediaType.APPLICATION_JSON)
+                            .content(inputJson));
+            
+            resultActions
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(MockMvcResultMatchers.content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.code").value("PU7AAA"))
+                    .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Tester"));
         }
     }
 }

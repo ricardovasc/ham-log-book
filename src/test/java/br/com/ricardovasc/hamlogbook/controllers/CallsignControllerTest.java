@@ -1,4 +1,4 @@
-package br.com.ricardovasc.controller;
+package br.com.ricardovasc.hamlogbook.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.only;
@@ -20,7 +20,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import br.com.ricardovasc.hamlogbook.controllers.CallsignController;
 import br.com.ricardovasc.hamlogbook.models.dtos.CallsignDTO;
 import br.com.ricardovasc.hamlogbook.services.CallsignService;
 import br.com.ricardovasc.hamlogbook.test.builders.TestCallsignDTOBuilder;
